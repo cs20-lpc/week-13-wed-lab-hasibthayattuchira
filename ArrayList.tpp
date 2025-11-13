@@ -1,16 +1,58 @@
 template <typename T>
 void ArrayList<T>::bubbleSort() {
     // TODO
+    //numComps = 0;
+    //numSwaps = 0; // test - had trouble with this, but then realized we are supposed to set this to 0, basically resetting if needed
+    for(int i = 0; i < this->length - 1; i++) {
+        for(int j = 0; j < this->length - i - 1; j++) {
+            numComps++; // starts the comparison
+            if(buffer[j] > buffer[j + 1]) {
+                swap(j, j + 1);
+                numSwaps++; // should be able to now count the number of swaps it takes for bubble sort
+            }
+        }
+    }
 }
 
 template <typename T>
 void ArrayList<T>::insertionSort() {
-    // TODO
+    //numComps = 0;
+    //numSwaps = 0; testing, not showing the correct number of swaps/output
+    for(int i = 1; i < this->length; i++) {
+        T key = buffer[i];
+        int j = i - 1;
+        while(j >= 0) { // moves elements that are greater than the key given
+            numComps++; // comparison starts here
+            if(buffer[j] > key) {
+                buffer[j + 1] = buffer[j];
+                numSwaps++; // should count the  number of swaps
+                j--;
+            }
+            else {
+                break;
+            }
+        }
+        buffer[j + 1] = key;
+    }
 }
 
 template <typename T>
 void ArrayList<T>::selectionSort() {
-    // TODO
+    //numComps = 0;
+    //numSwaps = 0; testing, not showing the correct number of swaps/output 
+    for(int i = 0; i < this->length - 1; i++) {
+        int minIndex = i;
+        for(int j = i + 1; j < this->length; j++) {
+            numComps++; // comparison starts here
+            if(buffer[j] < buffer[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if(minIndex != i) {
+            swap(i, minIndex);
+            numSwaps++; // should count the  number of swaps
+        }
+    }
 }
 
 /*******************************************************************************
